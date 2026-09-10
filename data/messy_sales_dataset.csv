@@ -1,0 +1,351 @@
+record_id,sales_rep,region,deal_value,city,signup_date,revenue_display,account_tier
+1,Rep_15,West,37.3,mumbai,2023-11-25,"2,551",SMB
+2,Rep_5,Central,56.1,PUNE,14-12-2024,2125,SMB
+3,Rep_7,Central,,chennai,20/10/2024,"2,722",SMB
+4,Rep_20,Central,31.56,Madras,2024-05-04,1.6k,SMB
+5,Rep_10,West,68.12,mumbai,21-11-2023,3012,SMB
+6,Rep_8,Central,480.6,CHENNAI,27-07-2024,2047,Enterprise
+7,Rep_18,North,54.56,chennai,27-09-2024,2589,Enterprise
+8,Rep_9,Central,,New Delhi,Apr 19 2024,2339,SMB
+9,Rep_1,East,,Chennai,Aug 04 2024,1683,SMB
+10,Rep_5,East,43.76,Bengaluru,22-01-2024,2.2k,SMB
+11,Rep_1,North,61.32,mumbai,2023-06-06,2.5k,Enterprise
+12,Rep_5,South,,Madras,Sep 17 2023,2.9k,SMB
+13,Rep_5,Central,79.62,Poona,2023-12-18,"2,671",SMB
+14,Rep_13,Central,,delhi,21/09/2023,"$2,206",SMB
+15,Rep_2,South,42.28,chennai,2023-12-28,0.7k,SMB
+16,Rep_20,West,77.69,Delhi,Mar 23 2023,"1,818",SMB
+17,Rep_1,North,43.91,pune,13-09-2024,"3,128",SMB
+18,Rep_9,East,36.66,Bombay,11/06/2023,1087,SMB
+19,Rep_18,West,50.77,Pune,28/04/2023,"1,928",SMB
+20,Rep_13,Central,498.54,Madras,Sep 04 2023,"2,079",Enterprise
+21,Rep_3,Central,35.91,Pune,02-05-2024,2864,SMB
+22,Rep_3,South,43.56,Madras,05-04-2023,"1,960",SMB
+23,Rep_11,South,,mumbai,16-01-2024,1.9k,SMB
+24,Rep_13,Central,57.89,DELHI,2024-07-22,2.5k,SMB
+25,Rep_19,North,53.63,bengaluru,21/06/2023,"$1,408",SMB
+26,Rep_12,North,36.26,pune,22-02-2023,"1,773",SMB
+27,Rep_17,West,569.81,Bengaluru,May 12 2024,"$2,999",Enterprise
+28,Rep_4,North,60.62,Poona,Jan 19 2023,1.7k,SMB
+29,Rep_9,South,32.46,Mumbai,14-07-2023,1988,SMB
+30,Rep_16,North,35.33,Poona,12-02-2024,"1,129",Enterprise
+31,Rep_3,East,41.2,pune,06/09/2024,"2,282",SMB
+32,Rep_19,South,51.96,Bengaluru,Jan 06 2024,1.8k,SMB
+33,Rep_15,South,73.41,Chennai,Feb 16 2023,1446,Enterprise
+34,Rep_19,North,,BENGALURU,06/09/2023,2798,SMB
+35,Rep_4,Central,49.05,DELHI,12-08-2024,1.9k,SMB
+36,Rep_4,South,,BENGALURU,Apr 26 2023,1831,SMB
+37,Rep_12,West,,Delhi,29/03/2023,1773,SMB
+38,Rep_7,Central,,DELHI,04-03-2023,1881,SMB
+39,Rep_7,East,48.28,DELHI,11/03/2024,1355,SMB
+40,Rep_17,North,48.78,DELHI,Oct 08 2024,1.5k,SMB
+41,Rep_7,Central,53.9,Bombay,25/08/2023,1135,SMB
+42,Rep_8,South,60.82,DELHI,2023-06-25,2859,SMB
+43,Rep_10,South,,Chennai,2024-12-05,"1,077",Enterprise
+44,Rep_7,South,,Mumbai,11/01/2023,2.6k,SMB
+45,Rep_18,North,428.8,CHENNAI,2024-06-04,"$1,792",Enterprise
+46,Rep_5,Central,58.88,PUNE,2023-11-14,2.3k,SMB
+47,Rep_12,South,396.83,Madras,2023-04-30,"$1,869",Enterprise
+48,Rep_6,Central,,Chennai,2024-08-25,2.2k,SMB
+49,Rep_15,West,61.88,MUMBAI,2023-06-02,2836,SMB
+50,Rep_20,North,40.85,chennai,06-11-2024,"$1,888",SMB
+51,Rep_6,West,48.95,MUMBAI,07/12/2024,"2,424",SMB
+52,Rep_11,West,48.3,Mumbai,Jan 07 2023,1.7k,SMB
+53,Rep_14,Central,30.43,bengaluru,14-08-2023,"$2,695",SMB
+54,Rep_3,East,550.16,Poona,Aug 16 2023,"2,073",Enterprise
+55,Rep_4,East,55.39,bengaluru,May 17 2024,1643,SMB
+56,Rep_17,South,66.49,DELHI,19/08/2024,2.1k,SMB
+57,Rep_14,South,,Bangalore,07-04-2023,"$2,325",SMB
+58,Rep_7,West,,Chennai,29/02/2024,628,SMB
+59,Rep_9,East,539.82,Chennai,31/05/2023,2212,SMB
+60,Rep_9,Central,52.15,Pune,27-08-2023,1705,SMB
+61,Rep_1,South,43.43,delhi,04-01-2024,2.0k,SMB
+62,Rep_18,West,24.15,Bangalore,11-03-2023,"2,448",SMB
+63,Rep_15,Central,35.37,DELHI,12-05-2023,2.9k,SMB
+64,Rep_15,North,,BENGALURU,10-12-2024,2558,SMB
+65,Rep_7,Central,,Pune,08-06-2023,2.0k,SMB
+66,Rep_8,East,64.06,Delhi,16-07-2023,"1,626",SMB
+67,Rep_4,Central,61.08,BENGALURU,Jan 14 2024,"$1,382",SMB
+68,Rep_12,North,41.71,pune,10/01/2024,"3,852",SMB
+69,Rep_19,West,,PUNE,21-02-2024,1978,Enterprise
+70,Rep_14,Central,,CHENNAI,12/11/2024,0.5k,SMB
+71,Rep_9,South,53.58,mumbai,2024-04-21,2.4k,SMB
+72,Rep_1,East,59.63,mumbai,2023-06-13,2.1k,SMB
+73,Rep_7,South,61.76,pune,Jul 08 2023,1.5k,Enterprise
+74,Rep_1,Central,33.12,Mumbai,03/02/2023,2.9k,SMB
+75,Rep_8,North,546.08,pune,May 19 2023,2335,Enterprise
+76,Rep_14,East,29.11,Delhi,Aug 23 2024,2292,SMB
+77,Rep_11,South,30.25,Bengaluru,Jan 15 2023,1.8k,SMB
+78,Rep_1,Central,21.0,BENGALURU,2023-08-19,1.7k,Enterprise
+79,Rep_20,Central,485.1,New Delhi,27-02-2024,1.7k,Enterprise
+80,Rep_8,Central,43.19,Delhi,2024-10-10,"$1,718",SMB
+81,Rep_9,East,66.43,Bombay,14-10-2024,"2,036",SMB
+82,Rep_12,Central,54.74,Pune,14/10/2023,2651,SMB
+83,Rep_1,Central,647.23,Pune,Nov 17 2023,1355,Enterprise
+84,Rep_12,South,49.58,Mumbai,31/07/2023,1.1k,Enterprise
+85,Rep_7,South,,Poona,Jul 02 2024,3266,SMB
+86,Rep_4,South,41.35,Pune,06/05/2023,2.5k,SMB
+87,Rep_5,Central,48.51,delhi,Dec 24 2024,"1,898",SMB
+88,Rep_14,East,67.71,BENGALURU,2024-06-02,"2,130",SMB
+89,Rep_2,East,71.29,Bangalore,06/06/2024,845,SMB
+90,Rep_8,Central,26.59,PUNE,15/03/2024,3580,SMB
+91,Rep_16,Central,70.99,CHENNAI,Oct 18 2024,2103,SMB
+92,Rep_12,North,43.37,Chennai,Feb 05 2023,"2,308",SMB
+93,Rep_11,North,43.2,delhi,20-10-2023,2.6k,SMB
+94,Rep_19,South,48.04,PUNE,20-02-2023,"$2,521",SMB
+95,Rep_10,Central,564.5,Pune,2024-10-04,"$1,797",Enterprise
+96,Rep_15,West,,Pune,Nov 23 2024,957,SMB
+97,Rep_1,North,40.96,PUNE,Apr 09 2024,2102,SMB
+98,Rep_8,East,59.76,Bombay,14/05/2024,"2,937",SMB
+99,Rep_12,Central,46.69,New Delhi,22/12/2024,1.9k,Enterprise
+100,Rep_20,Central,,Mumbai,Feb 17 2024,"$1,734",SMB
+101,Rep_19,North,41.4,Bengaluru,04/10/2023,2.5k,Enterprise
+102,Rep_14,West,41.33,BENGALURU,23-06-2024,"$2,818",SMB
+103,Rep_14,North,58.79,Bangalore,Nov 17 2024,1540,SMB
+104,Rep_19,South,53.5,Madras,29-11-2024,2.3k,SMB
+105,Rep_17,Central,486.66,PUNE,09-02-2023,2229,Enterprise
+106,Rep_20,East,,delhi,Oct 18 2023,"1,509",SMB
+107,Rep_12,Central,,BENGALURU,2023-06-15,3.0k,SMB
+108,Rep_15,West,46.75,mumbai,31-08-2023,1652,SMB
+109,Rep_12,West,,New Delhi,2023-02-07,"$2,258",SMB
+110,Rep_16,West,,Madras,11-04-2024,"$2,756",Enterprise
+111,Rep_1,West,65.23,Chennai,Aug 06 2023,$490,SMB
+112,Rep_6,North,53.62,chennai,Jul 20 2024,1.4k,SMB
+113,Rep_9,Central,30.73,delhi,06/03/2023,2180,SMB
+114,Rep_4,West,43.44,delhi,2024-06-15,911,SMB
+115,Rep_7,West,530.92,Bangalore,06-11-2023,"$2,139",Enterprise
+116,Rep_6,Central,70.07,bengaluru,Jan 12 2024,2269,SMB
+117,Rep_2,South,46.31,pune,25/11/2024,"1,583",SMB
+118,Rep_15,East,472.38,mumbai,2024-09-29,"$2,741",Enterprise
+119,Rep_1,Central,54.22,Chennai,08-07-2024,"$2,229",SMB
+120,Rep_12,Central,,Bombay,Dec 07 2023,"$1,109",SMB
+121,Rep_10,East,44.87,PUNE,2023-05-04,"1,652",SMB
+122,Rep_3,North,493.76,PUNE,04-11-2023,"$2,796",Enterprise
+123,Rep_17,South,68.25,mumbai,Sep 02 2024,"1,424",SMB
+124,Rep_5,West,,Bangalore,21-08-2023,2465,SMB
+125,Rep_13,East,22.68,Chennai,2023-10-31,"$2,903",SMB
+126,Rep_2,South,68.45,Bangalore,01/02/2023,3.2k,SMB
+127,Rep_17,Central,21.97,New Delhi,Apr 05 2024,1331,SMB
+128,Rep_19,West,,mumbai,2023-01-13,"1,726",SMB
+129,Rep_9,West,44.6,Chennai,13-06-2024,1253,Enterprise
+130,Rep_16,Central,552.63,Mumbai,28/04/2024,1.3k,Enterprise
+131,Rep_8,East,53.22,BENGALURU,2023-01-21,2.5k,SMB
+132,Rep_9,East,,New Delhi,27/11/2023,0.5k,SMB
+133,Rep_15,Central,47.23,Pune,02-08-2024,2785,SMB
+134,Rep_11,East,561.72,DELHI,2023-06-19,1934,Enterprise
+135,Rep_20,East,28.14,Chennai,03/04/2024,"$1,207",SMB
+136,Rep_3,North,,PUNE,14/02/2024,"$1,497",SMB
+137,Rep_2,East,41.6,delhi,2023-12-26,"$1,443",SMB
+138,Rep_1,North,,Delhi,Jan 02 2024,2.3k,SMB
+139,Rep_16,Central,41.82,BENGALURU,30/04/2024,1.9k,SMB
+140,Rep_12,North,35.14,New Delhi,Nov 19 2024,"$1,380",SMB
+141,Rep_7,East,63.31,mumbai,Jul 12 2023,2212,SMB
+142,Rep_18,West,53.35,Bangalore,May 25 2023,2477,SMB
+143,Rep_3,Central,58.08,Bangalore,21/09/2024,2.4k,SMB
+144,Rep_2,South,60.5,DELHI,20/07/2023,2.1k,SMB
+145,Rep_1,Central,,CHENNAI,2023-10-27,1462,SMB
+146,Rep_12,West,9.34,Chennai,Jul 12 2024,1995,Enterprise
+147,Rep_1,Central,,bengaluru,22-07-2023,"1,718",SMB
+148,Rep_12,North,31.89,DELHI,20/12/2024,"2,288",SMB
+149,Rep_13,East,,delhi,2023-05-23,"1,697",Enterprise
+150,Rep_15,North,42.92,PUNE,18-02-2023,2.3k,SMB
+151,Rep_9,North,,CHENNAI,2023-03-19,"1,652",SMB
+152,Rep_20,North,55.72,Mumbai,Oct 29 2023,"1,684",SMB
+153,Rep_20,East,33.23,CHENNAI,13-09-2023,2.0k,SMB
+154,Rep_16,West,,Pune,21/05/2023,3.4k,SMB
+155,Rep_5,Central,,Bombay,Aug 06 2024,2.6k,SMB
+156,Rep_3,Central,60.25,Pune,Aug 27 2024,2403,SMB
+157,Rep_7,North,36.68,bengaluru,19-09-2023,1574,SMB
+158,Rep_9,West,,mumbai,Nov 02 2023,"$2,798",SMB
+159,Rep_9,North,490.48,Delhi,08-02-2024,"$2,251",Enterprise
+160,Rep_3,West,,mumbai,Jun 29 2023,"$2,841",SMB
+161,Rep_1,Central,41.08,bengaluru,09/09/2024,0.9k,SMB
+162,Rep_18,Central,43.66,MUMBAI,13-03-2024,2.2k,SMB
+163,Rep_20,South,,Chennai,Sep 11 2024,2.7k,SMB
+164,Rep_2,South,47.0,MUMBAI,12-12-2023,"$1,799",SMB
+165,Rep_16,North,61.41,Poona,Jul 10 2024,"$2,098",SMB
+166,Rep_17,South,45.67,BENGALURU,16-12-2023,1899,SMB
+167,Rep_16,North,20.38,PUNE,2024-05-27,"3,181",SMB
+168,Rep_3,North,430.21,BENGALURU,2024-05-25,"$1,783",Enterprise
+169,Rep_8,North,,mumbai,May 21 2024,"1,593",Enterprise
+170,Rep_4,Central,,Bombay,Sep 27 2023,1301,SMB
+171,Rep_2,Central,69.01,pune,2023-03-21,"1,429",SMB
+172,Rep_3,West,41.44,PUNE,Jan 24 2023,"$1,899",Enterprise
+173,Rep_5,North,53.28,Poona,15/04/2024,1.3k,SMB
+174,Rep_17,North,26.31,DELHI,2024-01-18,2258,SMB
+175,Rep_14,North,486.91,chennai,23-08-2023,569,Enterprise
+176,Rep_12,North,42.22,chennai,13/04/2024,"2,176",SMB
+177,Rep_1,Central,61.77,New Delhi,2024-06-17,3.2k,SMB
+178,Rep_10,South,65.14,BENGALURU,Sep 02 2023,"$2,512",SMB
+179,Rep_13,North,33.34,MUMBAI,04/11/2024,2.8k,SMB
+180,Rep_20,East,594.12,Madras,Dec 03 2024,"1,606",Enterprise
+181,Rep_8,Central,76.62,Delhi,Nov 10 2024,2491,SMB
+182,Rep_10,Central,55.49,chennai,22-10-2024,"$1,756",SMB
+183,Rep_7,Central,36.29,Delhi,Dec 10 2023,"$2,629",SMB
+184,Rep_19,East,,Bengaluru,10/08/2024,3036,SMB
+185,Rep_1,East,49.88,Madras,08/11/2024,"3,231",SMB
+186,Rep_19,East,,PUNE,19/11/2023,"2,126",SMB
+187,Rep_11,Central,,chennai,10/05/2024,"2,456",SMB
+188,Rep_15,East,41.56,bengaluru,05-01-2023,2.4k,SMB
+189,Rep_15,North,71.85,Mumbai,Aug 29 2023,1.2k,SMB
+190,Rep_18,Central,509.25,Poona,2024-05-31,2392,Enterprise
+191,Rep_6,West,32.75,New Delhi,2024-02-10,940,SMB
+192,Rep_16,South,34.03,BENGALURU,Aug 08 2024,2.1k,SMB
+193,Rep_7,East,35.39,mumbai,2023-09-09,"$2,117",SMB
+194,Rep_12,South,42.82,DELHI,21-08-2024,"2,280",SMB
+195,Rep_4,West,55.92,delhi,19-02-2024,"$1,342",SMB
+196,Rep_8,North,70.57,Mumbai,Sep 23 2024,1.3k,SMB
+197,Rep_15,West,,Mumbai,23-09-2023,"$2,461",SMB
+198,Rep_13,North,,delhi,Jun 04 2023,1.3k,SMB
+199,Rep_3,North,32.24,delhi,Aug 14 2024,"1,786",SMB
+200,Rep_19,Central,34.34,Bombay,Mar 02 2023,"1,691",SMB
+201,Rep_17,North,40.58,DELHI,23/06/2023,"1,719",SMB
+202,Rep_9,North,56.58,delhi,2024-08-29,"$1,866",SMB
+203,Rep_15,South,583.32,mumbai,12-08-2023,"$1,578",Enterprise
+204,Rep_3,West,62.02,delhi,23/04/2024,2513,SMB
+205,Rep_1,South,42.45,MUMBAI,2024-03-17,0.9k,SMB
+206,Rep_2,North,68.7,Pune,06-10-2023,"2,321",Enterprise
+207,Rep_6,South,62.51,Bangalore,20-01-2024,$590,SMB
+208,Rep_4,South,58.55,Delhi,19-06-2024,2.4k,SMB
+209,Rep_15,West,,BENGALURU,2023-04-03,"1,757",Enterprise
+210,Rep_4,Central,56.15,delhi,Nov 02 2024,"$2,244",SMB
+211,Rep_14,South,52.36,MUMBAI,16-05-2023,"$2,477",SMB
+212,Rep_8,West,440.28,CHENNAI,29-06-2024,2.6k,Enterprise
+213,Rep_3,East,,Poona,Jun 27 2023,"1,837",SMB
+214,Rep_20,South,461.73,Chennai,Jan 25 2024,"$2,262",Enterprise
+215,Rep_15,West,57.42,Bengaluru,May 27 2023,"$1,024",SMB
+216,Rep_20,Central,55.49,pune,29-11-2023,2.9k,SMB
+217,Rep_2,South,39.51,mumbai,26/01/2023,1530,SMB
+218,Rep_14,East,,pune,15/03/2023,"1,317",SMB
+219,Rep_5,North,41.1,mumbai,28/02/2023,2875,SMB
+220,Rep_17,Central,43.43,Mumbai,2023-12-22,1154,SMB
+221,Rep_1,West,48.27,Bangalore,25/10/2023,$995,SMB
+222,Rep_8,East,37.29,New Delhi,10/11/2023,"1,316",SMB
+223,Rep_2,West,44.01,BENGALURU,07-04-2024,2.4k,SMB
+224,Rep_7,East,51.96,Mumbai,Oct 02 2023,"1,413",SMB
+225,Rep_3,North,,Madras,29-05-2024,"2,011",SMB
+226,Rep_4,South,56.04,delhi,17/04/2023,3341,SMB
+227,Rep_12,North,74.34,pune,18/07/2023,1.1k,SMB
+228,Rep_19,East,,New Delhi,14-07-2024,"$1,169",SMB
+229,Rep_2,West,44.78,DELHI,Jan 08 2024,"$2,838",SMB
+230,Rep_20,East,36.86,chennai,2024-03-02,"2,075",SMB
+231,Rep_4,West,48.86,CHENNAI,15-09-2023,"$1,646",SMB
+232,Rep_7,North,568.58,DELHI,2023-03-27,"1,774",Enterprise
+233,Rep_10,West,61.38,pune,06-07-2023,"$1,698",SMB
+234,Rep_2,South,676.77,mumbai,2024-11-27,"$2,934",Enterprise
+235,Rep_1,South,,Chennai,06/03/2024,"1,483",SMB
+236,Rep_6,North,,Pune,12-10-2023,"$2,353",SMB
+237,Rep_20,Central,57.05,Mumbai,Feb 24 2023,1643,SMB
+238,Rep_1,East,20.82,CHENNAI,16/12/2024,1420,Enterprise
+239,Rep_7,West,56.34,DELHI,22-10-2023,2068,SMB
+240,Rep_5,North,38.93,Mumbai,2024-08-31,1476,SMB
+241,Rep_8,Central,39.27,Poona,Jan 09 2023,"$2,042",SMB
+242,Rep_7,Central,,Mumbai,2023-01-01,"1,203",SMB
+243,Rep_16,West,44.5,BENGALURU,14-11-2024,"$3,080",SMB
+244,Rep_18,East,,delhi,Sep 17 2024,"$2,202",SMB
+245,Rep_3,South,35.68,PUNE,25/10/2024,"$1,170",Enterprise
+246,Rep_3,South,46.36,chennai,29/07/2023,0.5k,SMB
+247,Rep_5,North,59.76,Bengaluru,2024-04-17,"$1,687",SMB
+248,Rep_1,Central,,CHENNAI,2024-02-06,"2,017",SMB
+249,Rep_10,North,,Pune,2024-09-19,"$1,716",SMB
+250,Rep_16,North,31.33,PUNE,31-03-2024,2.0k,SMB
+251,Rep_18,South,51.94,CHENNAI,2024-03-21,1.6k,SMB
+252,Rep_3,North,53.74,Madras,04/08/2023,1696,SMB
+253,Rep_17,East,38.75,Bengaluru,24-12-2023,2279,SMB
+254,Rep_16,South,62.76,Poona,Jul 24 2023,1.9k,SMB
+255,Rep_18,Central,63.14,BENGALURU,17/03/2023,1212,SMB
+256,Rep_3,West,,pune,25-03-2024,"$2,612",SMB
+257,Rep_14,North,55.81,MUMBAI,2023-05-08,1668,SMB
+258,Rep_17,Central,59.26,bengaluru,09-04-2023,"2,531",SMB
+259,Rep_7,East,56.05,New Delhi,08/03/2023,"$2,169",SMB
+260,Rep_3,West,52.35,Mumbai,23-02-2024,1752,SMB
+261,Rep_1,Central,,PUNE,Oct 12 2024,"$1,581",SMB
+262,Rep_3,Central,,Bangalore,2023-02-26,1.3k,SMB
+263,Rep_2,West,57.59,chennai,29/07/2024,"$2,648",SMB
+264,Rep_19,Central,467.44,bengaluru,26-04-2024,"1,371",Enterprise
+265,Rep_20,South,60.95,Bombay,27/06/2024,"1,936",SMB
+266,Rep_20,North,43.19,Delhi,05-12-2023,"1,895",SMB
+267,Rep_3,East,,CHENNAI,15/09/2024,"$1,570",SMB
+268,Rep_12,East,43.03,CHENNAI,2023-10-16,"$2,116",SMB
+269,Rep_16,Central,59.66,Delhi,10/05/2023,2393,SMB
+270,Rep_13,West,548.11,mumbai,10-10-2023,"$1,277",Enterprise
+271,Rep_11,North,,Delhi,25/09/2023,"$2,505",SMB
+272,Rep_11,East,71.74,pune,2023-01-17,2146,SMB
+273,Rep_8,West,49.38,BENGALURU,14-05-2023,1.8k,SMB
+274,Rep_6,Central,70.6,delhi,Jan 30 2023,"1,315",SMB
+275,Rep_12,North,39.71,Delhi,23/11/2023,2335,SMB
+276,Rep_15,Central,46.14,Bengaluru,25/03/2023,"$2,785",SMB
+277,Rep_7,North,35.67,PUNE,31-10-2024,2407,SMB
+278,Rep_17,South,57.75,CHENNAI,17/08/2024,"$1,632",SMB
+279,Rep_7,Central,41.89,BENGALURU,Mar 27 2024,2.3k,SMB
+280,Rep_14,South,37.29,DELHI,Sep 25 2024,"$1,957",SMB
+281,Rep_20,West,50.72,Madras,08/05/2024,"$2,273",SMB
+282,Rep_8,East,511.38,pune,08-03-2024,"$2,057",Enterprise
+283,Rep_11,West,40.1,PUNE,19-03-2024,1690,SMB
+284,Rep_18,South,,Poona,2024-10-27,1.6k,SMB
+285,Rep_3,West,53.12,Poona,09-06-2024,"1,953",SMB
+286,Rep_11,West,,Bangalore,Dec 12 2024,"$2,531",Enterprise
+287,Rep_13,East,44.07,Madras,2024-10-29,"2,350",SMB
+288,Rep_14,North,597.13,Madras,Jul 16 2024,2578,Enterprise
+289,Rep_19,East,42.78,Poona,2024-02-25,2.6k,SMB
+290,Rep_17,Central,56.84,DELHI,2023-12-03,"$1,539",SMB
+291,Rep_8,Central,,Bangalore,31-03-2023,"$1,990",Enterprise
+292,Rep_16,North,,chennai,Mar 29 2024,2.5k,Enterprise
+293,Rep_16,Central,59.71,bengaluru,Feb 02 2024,2909,SMB
+294,Rep_16,South,,bengaluru,Jun 25 2024,"$1,501",SMB
+295,Rep_3,South,58.37,Mumbai,08/08/2023,1.1k,SMB
+296,Rep_6,Central,492.9,Mumbai,2023-04-21,"3,255",Enterprise
+297,Rep_20,West,,delhi,2023-01-03,"2,650",SMB
+298,Rep_18,North,525.94,Poona,13-04-2023,3234,Enterprise
+299,Rep_8,West,46.86,pune,Jun 17 2023,1328,SMB
+300,Rep_9,South,,Delhi,Mar 04 2024,2.0k,SMB
+301,Rep_4,South,58.49,mumbai,13-03-2023,"1,772",Enterprise
+302,Rep_3,West,61.18,Chennai,2024-07-04,1.3k,SMB
+303,Rep_9,Central,,Mumbai,10-07-2023,1.4k,SMB
+304,Rep_2,South,24.54,BENGALURU,19/04/2023,"$1,534",SMB
+305,Rep_17,West,40.41,BENGALURU,06/07/2024,2.8k,SMB
+306,Rep_6,West,43.63,Poona,May 19 2024,741,SMB
+307,Rep_12,South,30.49,CHENNAI,2023-01-28,"$2,365",SMB
+308,Rep_5,Central,46.17,Delhi,04/07/2023,1.8k,SMB
+309,Rep_19,West,550.76,Chennai,25-07-2024,2473,Enterprise
+310,Rep_3,South,,Bangalore,14-12-2023,1557,SMB
+311,Rep_8,North,48.83,CHENNAI,2024-12-18,"$3,463",SMB
+312,Rep_10,North,37.3,BENGALURU,08/10/2023,2491,Enterprise
+313,Rep_2,North,,MUMBAI,2024-10-02,2256,Enterprise
+314,Rep_17,East,41.23,pune,01/12/2024,"2,487",SMB
+315,Rep_20,South,,Bombay,23-05-2024,"$2,045",SMB
+316,Rep_10,West,37.21,mumbai,2023-04-23,"$1,772",SMB
+317,Rep_8,Central,,Poona,Apr 15 2023,"2,342",SMB
+318,Rep_5,West,34.08,MUMBAI,30/12/2023,2.9k,SMB
+319,Rep_11,Central,53.02,New Delhi,31-01-2024,2.1k,SMB
+320,Rep_7,South,61.71,mumbai,26-12-2024,"2,090",SMB
+321,Rep_2,South,62.55,chennai,Jan 27 2024,2796,SMB
+322,Rep_17,East,27.29,Pune,20-12-2023,"2,079",SMB
+323,Rep_2,South,45.27,Poona,2023-05-02,2052,SMB
+324,Rep_4,West,44.23,PUNE,Apr 11 2023,2602,SMB
+325,Rep_1,East,,pune,May 06 2024,"$2,273",SMB
+326,Rep_16,South,45.66,Bangalore,2024-06-11,"3,953",SMB
+327,Rep_16,South,42.11,Pune,13/02/2023,"$2,178",SMB
+328,Rep_11,Central,45.39,Chennai,Oct 16 2024,"$1,795",SMB
+329,Rep_17,West,62.35,delhi,01/12/2023,1.9k,SMB
+330,Rep_1,Central,50.59,chennai,2024-07-31,"$2,856",SMB
+331,Rep_16,East,34.28,mumbai,2024-02-04,3221,SMB
+332,Rep_14,North,66.18,Bengaluru,2024-09-04,2585,SMB
+333,Rep_1,West,51.44,bengaluru,Jun 21 2024,2.1k,Enterprise
+334,Rep_2,West,55.02,Pune,Oct 06 2024,1044,SMB
+335,Rep_6,West,571.65,mumbai,08/11/2023,2548,SMB
+336,Rep_13,North,,pune,Sep 29 2023,"2,631",Enterprise
+337,Rep_9,South,55.73,BENGALURU,2023-11-12,"2,004",SMB
+338,Rep_5,South,76.95,BENGALURU,Jul 27 2023,"$2,183",SMB
+339,Rep_1,Central,,Bengaluru,01-07-2023,"$2,665",SMB
+340,Rep_19,South,55.31,New Delhi,21-11-2024,"$2,314",SMB
+341,Rep_10,West,51.33,CHENNAI,23/03/2024,1740,SMB
+342,Rep_17,North,44.22,Chennai,Sep 11 2023,2595,SMB
+343,Rep_6,East,576.54,pune,31/12/2024,"2,114",Enterprise
+344,Rep_10,North,,Bombay,11/02/2023,"$1,707",SMB
+345,Rep_6,Central,52.03,BENGALURU,29-01-2024,"2,733",SMB
+346,Rep_13,South,51.69,PUNE,29-05-2023,1.7k,SMB
+347,Rep_5,Central,87.7,CHENNAI,2023-08-10,"$3,491",SMB
+348,Rep_6,North,45.06,pune,18-07-2024,"$1,531",Enterprise
+349,Rep_4,East,,Delhi,28/12/2024,"2,642",SMB
+350,Rep_8,East,348.24,CHENNAI,2023-08-02,3.4k,Enterprise

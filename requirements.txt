@@ -12,11 +12,11 @@ matplotlib>=3.7
 # rapidfuzz>=3.0
 
 # Only needed once Person B wires in real LLM narration/tie-breaking calls:
-# anthropic>=0.25
-google-genai>=0.1
-python-dotenv>=1.0
+# anthropic>=0.25  -- only if using the Anthropic version of narration
+google-genai>=0.1  # for Gemini-based narration (recommended: genuinely free tier)
+python-dotenv>=1.0  # loads .env automatically -- required for the API key to actually be picked up
 
-# Only needed for the Streamlit demo UI:
+# Only needed for the Streamlit demo UI (Person C):
 # streamlit>=1.30
 
 # Testing
