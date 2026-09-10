@@ -1,23 +1,35 @@
-# Core
+# ---------------------------------------------------------------- core
+# Everything the platform needs to run its full demo with no API key.
 pandas>=2.0
 numpy>=1.24
 scikit-learn>=1.3
 matplotlib>=3.7
 
-# Fuzzy string matching for category normalization.
-# NOTE: this codebase currently uses Python's built-in difflib as a
-# rapidfuzz substitute (no internet access during development). Swap to
-# rapidfuzz in your real environment -- faster and more robust on messy
-# real-world strings. Uncomment below once installed:
+# ---------------------------------------------------------------- config
+python-dotenv>=1.0   # loads .env automatically -- required for an API key to be picked up
+
+# ---------------------------------------------------------------- API layer (optional)
+# Only needed for `uvicorn app.main:app`. The demo scripts and the agents run
+# without these; app/main.py raises a clear message if they are missing.
+fastapi>=0.110
+uvicorn>=0.27
+python-multipart>=0.0.9   # required by FastAPI to accept the CSV file upload
+
+# ---------------------------------------------------------------- LLM providers (optional)
+# The platform runs in deterministic mode with neither of these installed.
+# Install the one matching LLM_PROVIDER in your .env.
+google-genai>=0.1   # Gemini -- genuinely free tier, no card required
+# anthropic>=0.25   # Anthropic -- uncomment if you set ANTHROPIC_API_KEY
+
+# ---------------------------------------------------------------- notes
+# Fuzzy string matching for category normalization currently uses Python's
+# built-in difflib (no internet access during original development). rapidfuzz
+# is faster and more robust on messy real-world strings -- swap it in if you can:
 # rapidfuzz>=3.0
 
-# Only needed once Person B wires in real LLM narration/tie-breaking calls:
-# anthropic>=0.25  -- only if using the Anthropic version of narration
-google-genai>=0.1  # for Gemini-based narration (recommended: genuinely free tier)
-python-dotenv>=1.0  # loads .env automatically -- required for the API key to actually be picked up
-
-# Only needed for the Streamlit demo UI (Person C):
+# Only needed for the Streamlit demo UI:
 # streamlit>=1.30
 
-# Testing
+# ---------------------------------------------------------------- testing
 pytest>=7.4
+httpx>=0.27   # required by fastapi.testclient for the API tests
