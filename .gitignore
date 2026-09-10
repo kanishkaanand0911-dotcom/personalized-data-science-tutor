@@ -5,3 +5,9 @@ __pycache__/
 venv/
 *.egg-info/
 .pytest_cache/
+
+# Runtime artifacts: learner progress, uploaded CSVs and rendered charts.
+# These are generated per-run and must not be committed.
+data/state/
+data/uploads/
+data/charts/
