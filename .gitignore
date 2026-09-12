@@ -11,3 +11,6 @@ venv/
 data/state/
 data/uploads/
 data/charts/
+
+# ADK's local session/artifact storage for the tutor_agent app.
+tutor_agent/.adk/

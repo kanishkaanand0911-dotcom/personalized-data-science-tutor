@@ -21,6 +21,11 @@ python-multipart>=0.0.9   # required by FastAPI to accept the CSV file upload
 google-genai>=0.1   # Gemini -- genuinely free tier, no card required
 # anthropic>=0.25   # Anthropic -- uncomment if you set ANTHROPIC_API_KEY
 
+# ---------------------------------------------------------------- Google ADK web UI (optional)
+# Only needed to run `adk web` (see tutor_agent/). The rest of the platform
+# runs without it.
+google-adk>=1.0
+
 # ---------------------------------------------------------------- notes
 # Fuzzy string matching for category normalization currently uses Python's
 # built-in difflib (no internet access during original development). rapidfuzz

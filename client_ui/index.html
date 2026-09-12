@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Data Science Tutor</title>
+<style>
+  :root {
+    --bg: #f6f7f9;
+    --panel: #ffffff;
+    --border: #e3e6ea;
+    --text: #1c2128;
+    --muted: #6b7280;
+    --accent: #2d6a4f;
+    --accent-ink: #ffffff;
+    --user-bubble: #2d4a6a;
+    --user-ink: #ffffff;
+    --bot-bubble: #eef1f4;
+    --bot-ink: #1c2128;
+    --error: #b3261e;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; height: 100%; background: var(--bg); color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  #app {
+    display: flex; flex-direction: column; height: 100vh; max-width: 760px;
+    margin: 0 auto; background: var(--panel); border-left: 1px solid var(--border);
+    border-right: 1px solid var(--border);
+  }
+  header {
+    padding: 14px 18px; border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  }
+  header h1 { font-size: 16px; margin: 0; }
+  header .sub { font-size: 12px; color: var(--muted); margin-top: 2px; }
+  header button {
+    font-size: 12px; padding: 6px 10px; border-radius: 6px; border: 1px solid var(--border);
+    background: var(--panel); color: var(--text); cursor: pointer;
+  }
+  header button:hover { background: var(--bg); }
+
+  #status-bar {
+    font-size: 12px; padding: 6px 18px; color: var(--muted); border-bottom: 1px solid var(--border);
+    display: none;
+  }
+  #status-bar.visible { display: block; }
+  #status-bar.error { color: var(--error); }
+
+  #messages {
+    flex: 1; overflow-y: auto; padding: 18px; display: flex; flex-direction: column; gap: 12px;
+  }
+  .msg { max-width: 82%; padding: 10px 13px; border-radius: 12px; line-height: 1.45; font-size: 14px; white-space: pre-wrap; }
+  .msg.user { align-self: flex-end; background: var(--user-bubble); color: var(--user-ink); border-bottom-right-radius: 3px; }
+  .msg.bot { align-self: flex-start; background: var(--bot-bubble); color: var(--bot-ink); border-bottom-left-radius: 3px; }
+  .msg.system { align-self: center; background: transparent; color: var(--muted); font-size: 12px; font-style: italic; }
+  .msg.typing { align-self: flex-start; background: var(--bot-bubble); color: var(--muted); font-style: italic; }
+
+  form#composer {
+    display: flex; gap: 8px; padding: 12px; border-top: 1px solid var(--border);
+  }
+  #composer textarea {
+    flex: 1; resize: none; border: 1px solid var(--border); border-radius: 10px; padding: 10px 12px;
+    font-size: 14px; font-family: inherit; height: 44px; max-height: 140px;
+  }
+  #composer button {
+    border: none; border-radius: 10px; padding: 0 18px; background: var(--accent); color: var(--accent-ink);
+    font-size: 14px; cursor: pointer;
+  }
+  #composer button:disabled { opacity: 0.5; cursor: not-allowed; }
+
+  #settings {
+    font-size: 12px; color: var(--muted); padding: 4px 18px 10px;
+  }
+  #settings input {
+    font-size: 12px; padding: 3px 6px; border: 1px solid var(--border); border-radius: 4px; width: 160px;
+  }
+</style>
+</head>
+<body>
+<div id="app">
+  <header>
+    <div>
+      <h1>Personalized Data Science Tutor</h1>
+      <div class="sub" id="learner-line">learner: …</div>
+    </div>
+    <button id="new-conversation">New conversation</button>
+  </header>
+  <div id="status-bar"></div>
+  <div id="messages"></div>
+  <form id="composer">
+    <textarea id="input" placeholder="Tell me about yourself, ask to learn, or paste a CSV path to analyze…" rows="1"></textarea>
+    <button type="submit" id="send-btn">Send</button>
+  </form>
+</div>
+
+<script>
+// ---------------------------------------------------------------- config
+// Point this at the running `adk web` / `adk api_server` instance.
+// Must be started with an --allow_origins value that covers this page's
+// origin, e.g.:
+//   adk web --allow_origins=http://localhost:5502,http://127.0.0.1:5502
+const ADK_BASE_URL = "http://127.0.0.1:8765";
+const APP_NAME = "tutor_agent";
+
+// ---------------------------------------------------------------- identity
+// A stable learner id per browser, kept in localStorage, is what makes the
+// tutor "remember" this learner across visits: the ADK tool layer keys the
+// underlying profile/progress store by this same id (see tutor_agent/tools.py).
+function getOrCreateId(key) {
+  let value = localStorage.getItem(key);
+  if (!value) {
+    value = (crypto.randomUUID ? crypto.randomUUID() : String(Date.now()) + Math.random().toString(16).slice(2));
+    localStorage.setItem(key, value);
+  }
+  return value;
+}
+
+const userId = getOrCreateId("tutor_user_id");
+let sessionId = getOrCreateId("tutor_session_id");
+
+const messagesEl = document.getElementById("messages");
+const statusEl = document.getElementById("status-bar");
+const form = document.getElementById("composer");
+const input = document.getElementById("input");
+const sendBtn = document.getElementById("send-btn");
+const learnerLine = document.getElementById("learner-line");
+const newConversationBtn = document.getElementById("new-conversation");
+
+learnerLine.textContent = "learner: " + userId.slice(0, 8) + "…  (remembered on this browser)";
+
+function addMessage(role, text) {
+  const div = document.createElement("div");
+  div.className = "msg " + role;
+  div.textContent = text;
+  messagesEl.appendChild(div);
+  messagesEl.scrollTop = messagesEl.scrollHeight;
+  return div;
+}
+
+function setStatus(text, isError) {
+  if (!text) {
+    statusEl.classList.remove("visible", "error");
+    statusEl.textContent = "";
+    return;
+  }
+  statusEl.textContent = text;
+  statusEl.classList.add("visible");
+  statusEl.classList.toggle("error", !!isError);
+}
+
+async function ensureSession() {
+  const url = `${ADK_BASE_URL}/apps/${APP_NAME}/users/${userId}/sessions/${sessionId}`;
+  let res = await fetch(url);
+  if (res.status === 404) {
+    res = await fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({}),
+    });
+  }
+  if (!res.ok) {
+    throw new Error(`Could not create/load session (HTTP ${res.status}). Is the ADK server running at ${ADK_BASE_URL} with CORS allowed for this page's origin?`);
+  }
+  const session = await res.json();
+  renderHistory(session.events || []);
+}
+
+function extractText(event) {
+  const parts = (event.content && event.content.parts) || [];
+  return parts.filter(p => typeof p.text === "string" && p.text.trim()).map(p => p.text).join("\n");
+}
+
+function renderHistory(events) {
+  messagesEl.innerHTML = "";
+  for (const event of events) {
+    const text = extractText(event);
+    if (!text) continue; // skip pure tool-call/tool-result events
+    const role = event.author === "user" || (event.content && event.content.role === "user") ? "user" : "bot";
+    addMessage(role, text);
+  }
+  if (!messagesEl.children.length) {
+    addMessage("system", "Say hello, tell me your role/experience/goal, or ask me to analyze a dataset.");
+  }
+}
+
+async function sendMessage(text) {
+  addMessage("user", text);
+  const typing = addMessage("typing", "thinking…");
+  sendBtn.disabled = true;
+  setStatus("");
+
+  try {
+    const res = await fetch(`${ADK_BASE_URL}/run`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        appName: APP_NAME,
+        userId,
+        sessionId,
+        newMessage: { role: "user", parts: [{ text }] },
+      }),
+    });
+
+    if (!res.ok) {
+      throw new Error(`Request failed (HTTP ${res.status}).`);
+    }
+
+    const events = await res.json();
+    typing.remove();
+
+    // The final assistant reply is the last event carrying visible text;
+    // earlier events in the same turn are tool calls/results with no text.
+    let reply = "";
+    for (let i = events.length - 1; i >= 0; i--) {
+      const text = extractText(events[i]);
+      if (text) { reply = text; break; }
+    }
+    addMessage("bot", reply || "(no reply text -- check the ADK server logs)");
+  } catch (err) {
+    typing.remove();
+    setStatus(err.message, true);
+    addMessage("system", "Something went wrong: " + err.message);
+  } finally {
+    sendBtn.disabled = false;
+  }
+}
+
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+  const text = input.value.trim();
+  if (!text) return;
+  input.value = "";
+  input.style.height = "44px";
+  sendMessage(text);
+});
+
+input.addEventListener("keydown", (e) => {
+  if (e.key === "Enter" && !e.shiftKey) {
+    e.preventDefault();
+    form.requestSubmit();
+  }
+});
+
+input.addEventListener("input", () => {
+  input.style.height = "44px";
+  input.style.height = Math.min(input.scrollHeight, 140) + "px";
+});
+
+newConversationBtn.addEventListener("click", async () => {
+  sessionId = crypto.randomUUID ? crypto.randomUUID() : String(Date.now());
+  localStorage.setItem("tutor_session_id", sessionId);
+  messagesEl.innerHTML = "";
+  setStatus("");
+  try {
+    await ensureSession();
+  } catch (err) {
+    setStatus(err.message, true);
+  }
+});
+
+ensureSession().catch(err => setStatus(err.message, true));
+</script>
+</body>
+</html>

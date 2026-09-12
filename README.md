@@ -275,6 +275,41 @@ uvicorn app.main:app --reload
 # interactive docs at http://127.0.0.1:8000/docs
 ```
 
+**The Google ADK dev UI** -- internal-only, for inspecting sessions/traces:
+
+```bash
+pip install google-adk
+cp tutor_agent/.env.example tutor_agent/.env   # add a free Gemini key: https://aistudio.google.com/apikey
+adk web --allow_origins=http://localhost:5502 --allow_origins=http://127.0.0.1:5502
+# dev inspector at the printed http://127.0.0.1:8000/dev-ui/ (or the port you pass with --port)
+```
+
+`adk web` auto-discovers the `tutor_agent/` package (it exposes a
+`root_agent`) from the project root. The agent itself is a thin ADK layer --
+its tools (`tutor_agent/tools.py`) call directly into the existing
+`Orchestrator`, so the underlying multi-agent pipeline, deterministic facts
+and fallback behaviour are unchanged. The `--allow_origins` flags let the
+client UI below (a different origin) call this server's REST API. See
+[docs/adk-migration.md](docs/adk-migration.md) for the full mapping.
+
+**The learner-facing client UI** -- a plain HTML/JS chat page in `client_ui/`
+that talks to the ADK server above over its REST API (`/apps/.../sessions`,
+`/run`). Serve it as static files from any port covered by `--allow_origins`:
+
+```bash
+cd client_ui
+python -m http.server 5502
+# open http://127.0.0.1:5502/index.html
+```
+
+Each browser gets a persistent random id (kept in `localStorage`), and the
+ADK tools key the learner's profile/progress/dataset in `data/state/` by
+that same id (`tutor_agent/tools.py::_uid`). That is the platform's memory:
+the same browser reconnecting later -- even in a brand-new ADK session --
+picks up exactly where the learner left off, with no login step. Clearing
+the browser's local storage (or opening a private window) starts a new,
+unrelated learner.
+
 | Endpoint | Method | Purpose |
 |---|---|---|
 | `/onboard` | POST | Describe yourself; get a profile and a path |

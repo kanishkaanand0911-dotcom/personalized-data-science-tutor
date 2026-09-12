@@ -1,0 +1,41 @@
+record_id,sales_rep,region,deal_value,city,signup_date,revenue_display,account_tier
+1,Rep_3,West,42.5,mumbai,2024-01-12,"1,850",SMB
+2,Rep_7,Central,58.2,PUNE,15-02-2024,2200,SMB
+3,Rep_1,North,,chennai,20/03/2024,"2,050",Enterprise
+4,Rep_9,South,29.75,Bombay,2024-01-28,1.4k,SMB
+5,Rep_5,East,61.3,Bengaluru,22-04-2024,2650,Enterprise
+6,Rep_3,West,,mumbai,Feb 09 2024,1.9k,SMB
+7,Rep_2,Central,340.8,CHENNAI,05-05-2024,3120,Enterprise
+8,Rep_8,North,33.4,New Delhi,2024-02-14,"$1,720",SMB
+9,Rep_6,South,,Madras,Mar 11 2024,2.1k,SMB
+10,Rep_1,East,47.9,bengaluru,17-01-2024,1980,SMB
+11,Rep_4,North,55.6,mumbai,2024-03-30,"2,410",Enterprise
+12,Rep_9,South,,Poona,Apr 06 2024,2.7k,SMB
+13,Rep_5,Central,71.25,delhi,19/02/2024,"$2,600",SMB
+14,Rep_3,West,38.9,MUMBAI,2024-04-18,1750,SMB
+15,Rep_7,Central,,pune,10-03-2024,2.0k,SMB
+16,Rep_2,East,64.4,Chennai,Jan 25 2024,2380,Enterprise
+17,Rep_8,North,29.15,new delhi,2024-02-27,"1,690",SMB
+18,Rep_6,South,53.7,madras,08/04/2024,2200,SMB
+19,Rep_1,East,,Bengaluru,2024-01-09,2.3k,SMB
+20,Rep_4,North,46.85,Mumbai,15-04-2024,"$2,150",SMB
+21,Rep_5,Central,300.4,Delhi,2024-03-02,3050,Enterprise
+22,Rep_9,South,31.6,bombay,Feb 21 2024,1.6k,SMB
+23,Rep_3,West,,pune,04/03/2024,2.05k,SMB
+24,Rep_7,Central,59.9,CHENNAI,2024-02-05,2280,Enterprise
+25,Rep_2,East,42.3,mumbai,22/01/2024,"1,980",SMB
+26,Rep_8,North,,New  Delhi,Mar 30 2024,2.4k,SMB
+27,Rep_6,South,67.15,Bengaluru,2024-04-11,2510,Enterprise
+28,Rep_1,East,36.4,madras,09-02-2024,1.85k,SMB
+29,Rep_4,North,54.2,mumbai,2024-01-17,"$2,090",SMB
+30,Rep_5,Central,,Poona,17/03/2024,2.6k,SMB
+31,Rep_9,South,48.75,delhi,Apr 22 2024,2170,SMB
+32,Rep_3,West,320.9,PUNE,2024-02-08,3100,Enterprise
+33,Rep_7,Central,39.6,Chennai,11/01/2024,"1,910",SMB
+34,Rep_2,East,,mumbai,2024-04-04,2.2k,SMB
+35,Rep_8,North,57.3,bengaluru,Mar 15 2024,2340,Enterprise
+36,Rep_6,South,44.1,Madras,2024-01-30,"$1,990",SMB
+37,Rep_1,East,29.85,new delhi,26/02/2024,2.05k,SMB
+38,Rep_4,North,,Mumbai,2024-03-19,2.3k,SMB
+39,Rep_5,Central,62.4,delhi,Apr 08 2024,2400,Enterprise
+40,Rep_9,South,50.2,bombay,12-01-2024,"2,020",SMB
