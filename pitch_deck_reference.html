@@ -1,0 +1,748 @@
+<title>VYBE Learn Architecture</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap">
+<style>
+  :root {
+    --bg: #0b0a10;
+    --surface: #16141c;
+    --surface-raised: #1d1a25;
+    --ink: #f4f2f7;
+    --ink-soft: #948fa0;
+    --ink-faint: #635d6e;
+    --accent: #ff3ea5;
+    --accent-deep: #d91c82;
+    --line: #28242f;
+    --good: #3ddc8a;
+    --warn: #ffc93c;
+    --radius: 12px;
+    --font-display: "Sora", "Segoe UI", system-ui, sans-serif;
+    --font-body: "Plus Jakarta Sans", "Segoe UI", system-ui, sans-serif;
+    --font-mono: "JetBrains Mono", "SF Mono", Consolas, monospace;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-body);
+    line-height: 1.55;
+  }
+
+  h1, h2, h3 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+    margin: 0;
+  }
+
+  code, .mono, .stat-value, .thresh, th, td.num {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+  }
+
+  a { color: var(--accent); }
+
+  ::selection { background: var(--accent); color: white; }
+
+  /* ---- layout shell ---- */
+
+  .shell {
+    display: grid;
+    grid-template-columns: 220px minmax(0, 1fr);
+    gap: 0;
+    max-width: 1180px;
+    margin: 0 auto;
+  }
+
+  nav.rail {
+    position: sticky;
+    top: 0;
+    align-self: start;
+    padding: 56px 20px 40px 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  nav.rail .mark {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 15px;
+    letter-spacing: 0.02em;
+    color: var(--ink);
+    margin-bottom: 28px;
+  }
+
+  nav.rail .mark span { color: var(--accent); }
+
+  nav.rail a {
+    color: var(--ink-soft);
+    text-decoration: none;
+    font-size: 12.5px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 7px 10px;
+    border-radius: 8px;
+    border-left: 2px solid transparent;
+  }
+
+  nav.rail a:hover { color: var(--ink); background: var(--surface); }
+
+  main {
+    padding: 56px 40px 120px 32px;
+    border-left: 1px solid var(--line);
+    min-width: 0;
+  }
+
+  section { padding-top: 64px; scroll-margin-top: 24px; }
+  section:first-of-type { padding-top: 0; }
+
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--accent);
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  section h2 { font-size: 28px; }
+  .lede { margin-top: 12px; max-width: 62ch; color: var(--ink-soft); font-size: 15px; }
+
+  /* ---- hero ---- */
+
+  .hero h1 { font-size: 44px; }
+  .hero .lede { font-size: 16.5px; max-width: 60ch; }
+  .hero-meta {
+    margin-top: 24px;
+    display: flex;
+    gap: 22px;
+    flex-wrap: wrap;
+    font-size: 12.5px;
+    color: var(--ink-faint);
+  }
+  .hero-meta b { color: var(--ink-soft); font-weight: 600; }
+
+  /* ---- diagram panel ---- */
+
+  .diagram-panel {
+    margin-top: 28px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--surface);
+    padding: 28px;
+    overflow-x: auto;
+  }
+  .diagram-panel .cap {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--ink-faint);
+    margin-top: 14px;
+    text-align: center;
+  }
+
+  /* ---- stat tiles ---- */
+
+  .stat-grid {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+  .stat {
+    background: var(--surface);
+    padding: 18px 18px 16px;
+  }
+  .stat-value {
+    font-size: 26px;
+    font-weight: 600;
+    color: var(--ink);
+  }
+  .stat-value .unit { font-size: 13px; color: var(--ink-faint); margin-left: 2px; }
+  .stat-label {
+    margin-top: 4px;
+    font-size: 11.5px;
+    color: var(--ink-soft);
+    letter-spacing: 0.01em;
+  }
+
+  /* ---- loop cycle row ---- */
+
+  .loop-row {
+    margin-top: 24px;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+  }
+  .loop-step {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 14px 14px 16px;
+    background: var(--surface);
+  }
+  .loop-step .n {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--accent);
+  }
+  .loop-step h4 {
+    font-family: var(--font-display);
+    font-size: 14.5px;
+    font-weight: 700;
+    margin: 6px 0 6px;
+    color: var(--ink);
+  }
+  .loop-step p { font-size: 12.5px; color: var(--ink-soft); margin: 0; }
+
+  .thresh-row {
+    margin-top: 18px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .thresh {
+    font-size: 12px;
+    color: var(--warn);
+    background: color-mix(in srgb, var(--warn) 12%, transparent);
+    border: 1px solid color-mix(in srgb, var(--warn) 30%, transparent);
+    border-radius: 999px;
+    padding: 5px 12px;
+  }
+
+  /* ---- tables ---- */
+
+  .table-wrap { margin-top: 18px; overflow-x: auto; border: 1px solid var(--line); border-radius: var(--radius); }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th {
+    text-align: left;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--ink-faint);
+    background: var(--surface-raised);
+    padding: 11px 16px;
+    white-space: nowrap;
+  }
+  td { padding: 11px 16px; border-top: 1px solid var(--line); color: var(--ink-soft); vertical-align: top; }
+  td:first-child, th:first-child { color: var(--ink); font-weight: 600; }
+  tr:hover td { background: color-mix(in srgb, var(--surface) 60%, var(--surface-raised)); }
+
+  /* ---- curriculum steps ---- */
+
+  .stage-list { margin-top: 22px; display: flex; flex-direction: column; gap: 0; }
+  .stage {
+    display: grid;
+    grid-template-columns: 34px 1fr;
+    gap: 14px;
+    padding: 16px 0;
+    border-top: 1px solid var(--line);
+  }
+  .stage:first-child { border-top: none; }
+  .stage .idx {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--accent);
+    padding-top: 2px;
+  }
+  .stage h4 { font-family: var(--font-display); font-size: 15.5px; font-weight: 700; color: var(--ink); }
+  .stage p { font-size: 13px; color: var(--ink-soft); margin: 4px 0 0; max-width: 64ch; }
+  .stage .tag-row { margin-top: 8px; display: flex; flex-wrap: wrap; gap: 6px; }
+  .stage .tag {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    color: var(--ink-faint);
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 2px 8px;
+  }
+  .stage .tag.skip {
+    color: var(--warn);
+    border-color: color-mix(in srgb, var(--warn) 35%, transparent);
+    background: color-mix(in srgb, var(--warn) 10%, transparent);
+  }
+
+  .skip-callout {
+    margin-top: 24px;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 14px;
+    align-items: start;
+    border: 1px solid color-mix(in srgb, var(--warn) 30%, var(--line));
+    background: color-mix(in srgb, var(--warn) 6%, var(--surface));
+    border-radius: var(--radius);
+    padding: 16px 20px;
+  }
+  .skip-callout .glyph {
+    font-family: var(--font-mono);
+    font-size: 18px;
+    color: var(--warn);
+    line-height: 1;
+    padding-top: 2px;
+  }
+  .skip-callout h4 { font-family: var(--font-display); font-size: 14.5px; color: var(--ink); margin-bottom: 4px; }
+  .skip-callout p { font-size: 13px; color: var(--ink-soft); margin: 0; max-width: 62ch; }
+
+  /* ---- mentor mode cards ---- */
+
+  .mode-grid { margin-top: 20px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .mode-card {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--surface);
+    padding: 18px;
+  }
+  .mode-card .tag { font-family: var(--font-mono); font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); }
+  .mode-card h4 { font-family: var(--font-display); font-size: 16px; margin: 8px 0 6px; }
+  .mode-card p { font-size: 12.5px; color: var(--ink-soft); margin: 0; }
+
+  .chip-row { margin-top: 16px; display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip {
+    font-size: 12px;
+    color: var(--ink-soft);
+    border: 1px solid var(--line);
+    background: var(--surface);
+    border-radius: 999px;
+    padding: 6px 13px;
+  }
+
+  /* ---- context object code block ---- */
+
+  pre.ctx {
+    margin-top: 18px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 18px 20px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    line-height: 1.65;
+    color: var(--ink-soft);
+    overflow-x: auto;
+  }
+  pre.ctx .k { color: var(--accent); }
+  pre.ctx .v { color: var(--ink); }
+
+  /* ---- talking points ---- */
+
+  .talk-grid { margin-top: 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .talk-card { border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); padding: 18px 20px; }
+  .talk-card h4 { font-family: var(--font-display); font-size: 14.5px; color: var(--ink); margin-bottom: 10px; }
+  .talk-card ul { margin: 0; padding-left: 18px; }
+  .talk-card li { font-size: 13px; color: var(--ink-soft); margin-bottom: 7px; }
+  .talk-card li::marker { color: var(--accent); }
+
+  /* ---- proof log ---- */
+
+  .log-block {
+    margin-top: 20px;
+    background: #08070b;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 20px 22px;
+    font-family: var(--font-mono);
+    font-size: 12.5px;
+    line-height: 1.85;
+    overflow-x: auto;
+  }
+  .log-line { white-space: pre; }
+  .log-dim { color: var(--ink-faint); }
+  .log-fail { color: #ff6b7a; }
+  .log-pass { color: var(--good); }
+  .log-tag {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    padding: 1px 7px;
+    border-radius: 4px;
+    margin-right: 8px;
+  }
+  .log-tag.fail { background: color-mix(in srgb, #ff6b7a 18%, transparent); color: #ff6b7a; }
+  .log-tag.pass { background: color-mix(in srgb, var(--good) 18%, transparent); color: var(--good); }
+
+  .proof-caption {
+    margin-top: 14px;
+    font-size: 13px;
+    color: var(--ink-soft);
+  }
+  .proof-caption b { color: var(--ink); }
+
+  /* ---- why this wins ---- */
+
+  .win-table td:first-child { white-space: nowrap; }
+  .win-table .no { color: var(--ink-faint); }
+  .win-table .no::before { content: "✕  "; color: #ff6b7a; }
+  .win-table .yes { color: var(--ink); }
+  .win-table .yes::before { content: "✓  "; color: var(--good); }
+
+  .rubric-grid {
+    margin-top: 18px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+  }
+  .rubric-card {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--surface);
+    padding: 16px 16px 18px;
+  }
+  .rubric-card .num {
+    font-family: var(--font-mono);
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--accent);
+  }
+  .rubric-card h4 {
+    font-family: var(--font-display);
+    font-size: 14px;
+    margin: 6px 0 8px;
+    color: var(--ink);
+  }
+  .rubric-card p { font-size: 12px; color: var(--ink-soft); margin: 0; }
+
+  footer {
+    margin-top: 72px;
+    padding-top: 22px;
+    border-top: 1px solid var(--line);
+    font-size: 11.5px;
+    color: var(--ink-faint);
+    font-family: var(--font-mono);
+  }
+
+  @media (max-width: 860px) {
+    .shell { grid-template-columns: 1fr; }
+    nav.rail { display: none; }
+    main { border-left: none; padding: 32px 20px 100px; }
+    .loop-row, .mode-grid, .talk-grid, .rubric-grid { grid-template-columns: 1fr; }
+  }
+</style>
+
+<div class="shell">
+  <nav class="rail">
+    <div class="mark">VYBE<span>·</span>LEARN</div>
+    <a href="#overview">Overview</a>
+    <a href="#proof">Proof it's real</a>
+    <a href="#architecture">Architecture</a>
+    <a href="#loop">Agentic loop</a>
+    <a href="#narration">Tutor fallback</a>
+    <a href="#mentor">AI Mentor</a>
+    <a href="#curriculum">Curriculum</a>
+    <a href="#stack">Tech stack</a>
+    <a href="#why-wins">Why this wins</a>
+    <a href="#talking-points">Talking points</a>
+  </nav>
+
+  <main>
+    <section id="overview" class="hero">
+      <span class="eyebrow">System architecture &amp; pitch reference</span>
+      <h1>An agent that shows its work, teaching the work it shows.</h1>
+      <p class="lede">
+        VYBE Learn is a gamified data-science tutor built around one real constraint: a
+        <b style="color:var(--ink)">deterministic agent</b> cleans data and selects a model on its own —
+        observe, decide, act, evaluate, adapt — and the learner's job is to predict what it will do,
+        not steer it. An LLM narrates and tutors on top; it never makes the analytical decisions.
+      </p>
+      <div class="hero-meta">
+        <span><b>Backend</b> FastAPI + pandas + scikit-learn</span>
+        <span><b>Frontend</b> React 19 + Vite + Tailwind v4</span>
+        <span><b>Tutor</b> Google ADK multi-agent → Gemini → deterministic fallback</span>
+        <span><b>Tests</b> 37 passing</span>
+      </div>
+
+      <div class="stat-grid">
+        <div class="stat"><div class="stat-value">2<span class="unit">loops</span></div><div class="stat-label">Real agentic decisions, not one</div></div>
+        <div class="stat"><div class="stat-value">6<span class="unit">stages</span></div><div class="stat-label">Python fundamentals → final project</div></div>
+        <div class="stat"><div class="stat-value">3<span class="unit">tiers</span></div><div class="stat-label">Tutor fallback, always answers</div></div>
+        <div class="stat"><div class="stat-value">3<span class="unit">modes</span></div><div class="stat-label">Mentor: guided / assisted / independent</div></div>
+        <div class="stat"><div class="stat-value">37<span class="unit">/ 37</span></div><div class="stat-label">Backend tests passing</div></div>
+        <div class="stat"><div class="stat-value">0<span class="unit">invented</span></div><div class="stat-label">Numbers on screen — all traced to code</div></div>
+      </div>
+    </section>
+
+    <section id="proof">
+      <span class="eyebrow">The moment that sells it</span>
+      <h2>Watch it change its mind, on your own data</h2>
+      <p class="lede">This isn't a scripted demo path — it's the actual reveal log from a live run on the sample
+        dataset. The agent tried the obvious fix, measured that it distorted the column, and switched strategies
+        before ever showing the learner an answer.</p>
+
+      <div class="log-block">
+        <div class="log-line log-dim">$ agent.clean(column="deal_value", issue="missing_numeric")</div>
+        <div class="log-line"><span class="log-tag fail">DISCARDED</span><span class="log-fail">impute_median</span><span class="log-dim">  →  skew shifted 21.3% (2.186 → 2.651), exceeds 15.0% threshold</span></div>
+        <div class="log-line"><span class="log-tag pass">KEPT</span><span class="log-pass">impute_knn</span><span class="log-dim">      →  skew shift 7.6%, within 15.0% threshold</span></div>
+        <div class="log-line log-dim" style="margin-top:10px;">$ agent.select_model(target="deal_value")</div>
+        <div class="log-line"><span class="log-tag pass">KEPT</span><span class="log-pass">LinearRegression</span><span class="log-dim">  →  R²=0.287, residual↔prediction corr=0.142 (≤0.25) → acceptable fit</span></div>
+      </div>
+      <p class="proof-caption">Every number above is a <b>live computation</b>, re-run for whatever dataset the
+        judge uploads — not a cached string. That's the difference between "an AI-themed UI" and an agent.</p>
+    </section>
+
+    <section id="architecture">
+      <span class="eyebrow">01 — System map</span>
+      <h2>Four layers, one honesty rule</h2>
+      <p class="lede">The UI never computes an analytical result itself — every number, chart, and decision
+        is fetched from the deterministic core. The LLM layer only ever narrates or tutors around it.</p>
+
+      <div class="diagram-panel">
+        <pre class="mermaid">
+flowchart TB
+  subgraph Client["Browser — React 19 + Vite + Tailwind v4"]
+    UI["Screen state machine<br/>onboarding → dataset → roadmap → 6 stages"]
+    Mentor["AI Mentor panel<br/>floating, mode-aware"]
+    Notes["Notes<br/>localStorage scratchpad"]
+  end
+
+  subgraph API["FastAPI — web/api.py"]
+    Session["In-memory Session store<br/>X-Session-Id header, max 200"]
+    Routes["/api/dataset  /api/levels  /api/verify<br/>/api/visualize  /api/model  /api/mentor  /api/chat"]
+  end
+
+  subgraph Core["Deterministic agent core — decisions never LLM-made"]
+    Detect["detect.py<br/>rule-based issue detection"]
+    Loop["loop.py<br/>observe → decide → act → evaluate → adapt"]
+    Actions["actions.py<br/>pandas transforms"]
+    ModelSel["model_selector.py<br/>second agentic loop"]
+  end
+
+  subgraph Narration["3-tier tutor — explanation only, never decides"]
+    ADK["ADK multi-agent tutor<br/>Gemini 3.6 Flash · :8765"]
+    Gemini["Direct Gemini call<br/>google-genai"]
+    FAQ["Deterministic FAQ<br/>always available, zero deps"]
+  end
+
+  UI --> Routes
+  Mentor --> Routes
+  Notes -. saves replies .-> Mentor
+  Routes --> Session
+  Routes --> Detect --> Loop --> Actions
+  Loop --> ModelSel
+  Routes -->|chat + mentor prompts| ADK
+  ADK -. unavailable .-> Gemini
+  Gemini -. unavailable .-> FAQ
+        </pre>
+        <div class="cap">every arrow into the Core is a real computation; every arrow into Narration is words about it</div>
+      </div>
+    </section>
+
+    <section id="loop">
+      <span class="eyebrow">02 — The actual agent</span>
+      <h2>Observe → decide → act → evaluate → adapt</h2>
+      <p class="lede">The same five-step loop runs twice: once choosing a cleaning strategy per column,
+        once choosing a regression model. Each escalation is justified by a specific measured failure —
+        not "try everything, keep the best score."</p>
+
+      <div class="loop-row">
+        <div class="loop-step"><div class="n">01</div><h4>Observe</h4><p>Column stats, skew, null%, dtype — or dataset shape, feature count, linearity signal.</p></div>
+        <div class="loop-step"><div class="n">02</div><h4>Decide</h4><p>Pick the simplest candidate strategy first, with a stated reason.</p></div>
+        <div class="loop-step"><div class="n">03</div><h4>Act</h4><p>Apply the transform, or fit the model.</p></div>
+        <div class="loop-step"><div class="n">04</div><h4>Evaluate</h4><p>Re-measure: skew shift, cross-validated R²/RMSE, residual pattern.</p></div>
+        <div class="loop-step"><div class="n">05</div><h4>Adapt</h4><p>Pass → keep. Fail → escalate to the next candidate and repeat.</p></div>
+      </div>
+
+      <div class="thresh-row">
+        <span class="thresh">skew shift ≤ 15% → cleaning fix kept</span>
+        <span class="thresh">R² ≥ 0.15 → model acceptable</span>
+        <span class="thresh">|residual↔prediction corr| ≤ 0.25 → no missed pattern</span>
+      </div>
+
+      <div class="table-wrap" style="margin-top:26px;">
+        <table>
+          <tr><th>Issue type</th><th>Candidate ladder (simplest first)</th></tr>
+          <tr><td>Missing numeric</td><td>impute_median → impute_knn</td></tr>
+          <tr><td>Missing categorical</td><td>impute_mode</td></tr>
+          <tr><td>Inconsistent labels</td><td>normalize_categories (fuzzy match)</td></tr>
+          <tr><td>Numbers stored as text</td><td>coerce_numeric_strings</td></tr>
+          <tr><td>Mixed-up date formats</td><td>coerce_dates</td></tr>
+          <tr><td>Model family</td><td>LinearRegression → Ridge → RandomForest → GradientBoosting</td></tr>
+        </table>
+      </div>
+    </section>
+
+    <section id="narration">
+      <span class="eyebrow">03 — Never a dead end</span>
+      <h2>Three tutor tiers, one honest fallback</h2>
+      <p class="lede">Every chat and mentor reply tries the richest source first and degrades gracefully —
+        each tier returns nothing rather than a guess, so a missing key or a second server never breaks the chat,
+        it just quietly narrows what's available. The UI always discloses which tier actually answered.</p>
+
+      <div class="table-wrap">
+        <table>
+          <tr><th>Tier</th><th>Source</th><th>Adds</th><th>Fails silently when</th></tr>
+          <tr><td>1</td><td>ADK multi-agent tutor (port 8765)</td><td>Profiler + gamification agents — real XP, badges, persistent learner profile</td><td>Server not running, or its key is invalid/revoked</td></tr>
+          <tr><td>2</td><td>Direct Gemini (google-genai)</td><td>Live, grounded answer with no memory layer</td><td>No/invalid GEMINI_API_KEY</td></tr>
+          <tr><td>3</td><td>Deterministic FAQ + rule-based reply</td><td>Always available, zero external dependency</td><td>never — this is the floor</td></tr>
+        </table>
+      </div>
+    </section>
+
+    <section id="mentor">
+      <span class="eyebrow">04 — Built this session</span>
+      <h2>AI Mentor: platform-wide, mode-aware coaching</h2>
+      <p class="lede">A floating panel available from any screen, fed a live context object instead of
+        just the last message — and instructed to nudge, not solve, until the learner has actually tried.</p>
+
+      <div class="mode-grid">
+        <div class="mode-card"><span class="tag">Guided</span><h4>Struggling</h4><p>Very simple language, one step at a time, concrete example, one question per reply.</p></div>
+        <div class="mode-card"><span class="tag">Assisted</span><h4>Making progress</h4><p>Names the concept, gives a partial hint, asks for another attempt before revealing more.</p></div>
+        <div class="mode-card"><span class="tag">Independent</span><h4>Confident</h4><p>Minimal hints — asks the learner to justify their own reasoning and code.</p></div>
+      </div>
+
+      <div class="chip-row">
+        <span class="chip">Explain this</span>
+        <span class="chip">Give me a hint</span>
+        <span class="chip">Why is this wrong?</span>
+        <span class="chip">Show an example</span>
+        <span class="chip">Explain the output</span>
+        <span class="chip">What should I try next?</span>
+      </div>
+
+      <pre class="ctx">{
+  <span class="k">"user_message"</span>: <span class="v">"..."</span>,
+  <span class="k">"current_lesson"</span>: { <span class="k">title</span>, <span class="k">objective</span>, <span class="k">difficulty</span>, <span class="k">step</span> },
+  <span class="k">"dataset"</span>: { <span class="k">name</span>, <span class="k">columns</span>, <span class="k">shape</span>, <span class="k">current_version</span> },
+  <span class="k">"current_code"</span>: <span class="v">"..."</span>,  <span class="k">"last_output"</span>: <span class="v">"..."</span>,  <span class="k">"last_error"</span>: <span class="v">"..."</span>,
+  <span class="k">"attempt_count"</span>: <span class="v">0</span>,  <span class="k">"hints_used"</span>: <span class="v">0</span>,  <span class="k">"mastery_level"</span>: <span class="v">0</span>,
+  <span class="k">"learning_mode"</span>: <span class="v">"guided|assisted|independent"</span>,
+  <span class="k">"previous_mistakes"</span>: [],  <span class="k">"recent_actions"</span>: []
+}</pre>
+    </section>
+
+    <section id="curriculum">
+      <span class="eyebrow">05 — Learning path</span>
+      <h2>Six stages, ten real steps</h2>
+      <p class="lede">Verification sits as a bridging step between Cleaning and EDA — real, tested functionality,
+        not one of the six named stages, kept because it's the honest answer to "did the fix actually work?"</p>
+
+      <div class="stage-list">
+        <div class="stage"><div class="idx">01</div><div><h4>Python &amp; Data Fundamentals</h4><p>Read a CSV, understand rows/columns, real <code>pd.read_csv</code> / <code>df.shape</code> / <code>df.columns</code>.</p></div></div>
+        <div class="stage"><div class="idx">02</div><div><h4>Data Cleaning</h4><p>One level per detected issue — missing values, inconsistent labels, bad dates, numbers-as-text.</p>
+          <div class="tag-row"><span class="tag">4 issues on the sample dataset</span><span class="tag skip">⏭ "Skip cleaning" → jumps straight to Verification</span></div>
+        </div></div>
+        <div class="stage"><div class="idx">—</div><div><h4>Verification <span style="color:var(--ink-faint); font-weight:500;">(bridge)</span></h4><p>Runs real downstream tasks on the cleaned data — aggregation, a bar chart, a trend line.</p></div></div>
+        <div class="stage"><div class="idx">03</div><div><h4>Exploratory Data Analysis</h4><p>Real histograms, category bars, monthly trend — plus a correlation card grounded in the model's own observation.</p></div></div>
+        <div class="stage"><div class="idx">04</div><div><h4>Machine Learning Foundations</h4><p>Target, features, train/test split, regression vs. classification — all named from the real dataset.</p></div></div>
+        <div class="stage"><div class="idx">05</div><div><h4>Model Selection &amp; Evaluation</h4><p>The second agentic loop, narrated: why this model, what it explained, why it was kept.</p>
+          <div class="tag-row"><span class="tag skip">⏭ "Skip modeling" → jumps straight to Final Project</span></div>
+        </div></div>
+        <div class="stage"><div class="idx">06</div><div><h4>Final Project</h4><p>Full recap — every cleaning decision, every chart, the chosen model, portfolio-ready.</p></div></div>
+      </div>
+
+      <div class="skip-callout">
+        <span class="glyph">⏭</span>
+        <div>
+          <h4>Skip the basics — on purpose</h4>
+          <p>Cleaning and Modeling both carry an explicit <b style="color:var(--ink)">"Skip"</b> action in the
+            study top bar. A confident learner isn't forced through busywork to reach the part they actually
+            came for — they jump straight to Verification or Final Project, and the Rail sidebar marks those
+            steps honestly incomplete rather than faking a checkmark. The same respect-for-mastery idea behind
+            the Mentor's <b style="color:var(--ink)">Independent</b> mode, expressed as real navigation, not just tone.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="stack">
+      <span class="eyebrow">06 — Tech stack</span>
+      <h2>What it's actually built on</h2>
+
+      <div class="table-wrap">
+        <table>
+          <tr><th>Layer</th><th>Library</th><th>Version</th></tr>
+          <tr><td rowspan="5">Frontend</td><td>React / React DOM</td><td class="num">19.2</td></tr>
+          <tr><td>Vite</td><td class="num">8.3</td></tr>
+          <tr><td>TypeScript</td><td class="num">~6.0</td></tr>
+          <tr><td>Tailwind CSS</td><td class="num">4.3</td></tr>
+          <tr><td>framer-motion</td><td class="num">13.2</td></tr>
+          <tr><td rowspan="3">Backend</td><td>FastAPI</td><td class="num">≥0.110</td></tr>
+          <tr><td>Uvicorn</td><td class="num">≥0.27</td></tr>
+          <tr><td>pandas / numpy</td><td class="num">≥2.0 / ≥1.24</td></tr>
+          <tr><td rowspan="2">Modeling</td><td>scikit-learn</td><td class="num">≥1.3</td></tr>
+          <tr><td>matplotlib</td><td class="num">≥3.7</td></tr>
+          <tr><td rowspan="2">AI / narration</td><td>google-genai (direct Gemini)</td><td class="num">≥0.1</td></tr>
+          <tr><td>Google ADK (separate service)</td><td class="num">Gemini 3.6 Flash</td></tr>
+          <tr><td>Testing</td><td>pytest + httpx</td><td class="num">≥7.4 / ≥0.27</td></tr>
+        </table>
+      </div>
+    </section>
+
+    <section id="why-wins">
+      <span class="eyebrow">07 — The case</span>
+      <h2>Why this beats a chatbot wrapper</h2>
+      <p class="lede">Most "AI tutor" submissions are a system prompt around a chat window. The bar to clear isn't
+        "does it talk about data science" — it's "can you trust anything it just showed you."</p>
+
+      <div class="table-wrap">
+        <table class="win-table">
+          <tr><th>Axis</th><th>Typical AI-tutor demo</th><th>VYBE Learn</th></tr>
+          <tr><td>Who decides the fix</td><td class="no">the LLM guesses in-context</td><td class="yes">a deterministic loop, measured and re-checked</td></tr>
+          <tr><td>Why a fix was kept</td><td class="no">a plausible-sounding sentence</td><td class="yes">a real skew-shift number against a stated threshold</td></tr>
+          <tr><td>When the model breaks</td><td class="no">stalls, apologizes, or hallucinates</td><td class="yes">falls through ADK → Gemini → deterministic FAQ, discloses which</td></tr>
+          <tr><td>Personalization</td><td class="no">one-size tone knob</td><td class="yes">3 modes, driven by real hint/attempt counters, not vibes</td></tr>
+          <tr><td>Does it ever cheat the learner</td><td class="no">answers before they've tried</td><td class="yes">nudges only, reveal gated on real attempt history</td></tr>
+          <tr><td>Respects existing knowledge</td><td class="no">forces every learner through every step</td><td class="yes">explicit "Skip cleaning" / "Skip modeling" — no faked checkmarks</td></tr>
+        </table>
+      </div>
+
+      <div class="rubric-grid">
+        <div class="rubric-card"><div class="num">01</div><h4>Technical depth</h4><p>Two independent agentic loops with real statistical acceptance criteria, not a single prompt template.</p></div>
+        <div class="rubric-card"><div class="num">02</div><h4>Reliability under judging</h4><p>Three-tier fallback means a bad wifi connection or a dead API key degrades the tutor, never crashes the demo.</p></div>
+        <div class="rubric-card"><div class="num">03</div><h4>Genuine UX craft</h4><p>Gamified scoring, a progress rail, a mentor panel, and a notes scratchpad — none of it blocking the core loop.</p></div>
+        <div class="rubric-card"><div class="num">04</div><h4>Works on their data</h4><p>Upload any CSV — detection, cleaning, charts, and modeling all run live, not against one hardcoded sample.</p></div>
+      </div>
+    </section>
+
+    <section id="talking-points">
+      <span class="eyebrow">08 — For the deck</span>
+      <h2>What to actually say</h2>
+
+      <div class="talk-grid">
+        <div class="talk-card">
+          <h4>The hook</h4>
+          <ul>
+            <li>The agent cleans data and picks a model completely on its own — the learner predicts, never steers.</li>
+            <li>Every "why" on screen is a real measured number, not a canned explanation.</li>
+            <li>Wrong guesses cost points but never touch the data — guesses are scored alongside the agent, never fed into it.</li>
+          </ul>
+        </div>
+        <div class="talk-card">
+          <h4>The differentiator</h4>
+          <ul>
+            <li>Two real agentic loops (cleaning, modeling) — same observe/decide/act/evaluate/adapt shape, reused on purpose.</li>
+            <li>A mentor that refuses to just answer — three modes tuned to how stuck the learner actually is.</li>
+            <li>The tutor layer can vanish entirely (no key, no ADK server) and the product still teaches, honestly.</li>
+          </ul>
+        </div>
+        <div class="talk-card">
+          <h4>Live demo order</h4>
+          <ul>
+            <li>Load the sample dataset → show the 10-step roadmap.</li>
+            <li>Guess a cleaning strategy wrong → reveal the agent's real backtrack (median discarded, KNN kept).</li>
+            <li>Open the AI Mentor mid-lesson → switch modes → ask "give me a hint."</li>
+            <li>Jump to Model Selection → show the escalation reasoning → Final Project recap.</li>
+          </ul>
+        </div>
+        <div class="talk-card">
+          <h4>If asked "where's the AI"</h4>
+          <ul>
+            <li>Two places, on purpose: the deterministic core (decisions) and the narration layer (explanation) — never the same code path.</li>
+            <li>That separation is why a judge can trust the R² on screen — no LLM ever touched the math.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <footer>vybe-learn · web/api.py + app/agent · reference generated for pitch-deck prep</footer>
+  </main>
+</div>

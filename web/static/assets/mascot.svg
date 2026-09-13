@@ -1,0 +1,25 @@
+<svg viewBox="0 0 200 210" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Triage, the guide creature">
+  <!-- antenna -->
+  <path d="M104 40 C99 26 111 18 116 8" stroke="#3A2233" stroke-width="6" fill="none" stroke-linecap="round"/>
+  <circle cx="117" cy="7" r="9" fill="#FFC93C"/>
+  <!-- ear / wing flourish -->
+  <path d="M36 104 C6 90 6 132 34 138 C38 126 37 114 36 104 Z" fill="#E23A73"/>
+  <path d="M164 104 C194 90 194 132 166 138 C162 126 163 114 164 104 Z" fill="#E23A73"/>
+  <!-- body -->
+  <rect x="30" y="40" width="140" height="140" rx="58" fill="#FF4785"/>
+  <!-- belly panel -->
+  <ellipse cx="100" cy="128" rx="40" ry="34" fill="#FFDCE8"/>
+  <!-- eyes -->
+  <circle cx="82" cy="96" r="10" fill="#3A2233"/>
+  <circle cx="118" cy="96" r="10" fill="#3A2233"/>
+  <circle cx="85.5" cy="92" r="3" fill="#FFF7F5"/>
+  <circle cx="121.5" cy="92" r="3" fill="#FFF7F5"/>
+  <!-- blush -->
+  <circle cx="66" cy="112" r="6.5" fill="#FF9CC0"/>
+  <circle cx="134" cy="112" r="6.5" fill="#FF9CC0"/>
+  <!-- smile -->
+  <path d="M88 116 C97 127 103 127 112 116" stroke="#3A2233" stroke-width="5" fill="none" stroke-linecap="round"/>
+  <!-- stub feet -->
+  <rect x="62" y="172" width="26" height="20" rx="9" fill="#E23A73" transform="rotate(-9 75 182)"/>
+  <rect x="112" y="172" width="26" height="20" rx="9" fill="#E23A73" transform="rotate(10 125 182)"/>
+</svg>
