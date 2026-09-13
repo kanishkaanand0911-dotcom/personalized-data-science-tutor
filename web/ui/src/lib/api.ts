@@ -1,6 +1,12 @@
 /* Client for the FastAPI layer in web/api.py. Every decision shown here comes
    from the backend; this file only calls it and types the shapes. */
 
+// In dev, Vite's own proxy forwards "/api" to the local backend (see
+// vite.config.ts). That proxy doesn't exist once this is built and deployed
+// separately (e.g. frontend on Vercel, backend on Render/Railway) - there,
+// VITE_API_BASE must point at the deployed backend's own origin.
+const API_BASE = (import.meta.env.VITE_API_BASE ?? "").replace(/\/$/, "");
+
 const SID_KEY = "da_sid";
 const LEARNER_ID_KEY = "vybe_learner_id";
 
@@ -35,7 +41,7 @@ async function request<T>(path: string, init?: RequestInit): Promise<T> {
   const headers = new Headers(init?.headers);
   const sid = getSessionId();
   if (sid) headers.set("X-Session-Id", sid);
-  const res = await fetch(`/api${path}`, { ...init, headers });
+  const res = await fetch(`${API_BASE}/api${path}`, { ...init, headers });
   let data: unknown = null;
   try {
     data = await res.json();

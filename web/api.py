@@ -28,6 +28,7 @@ except ImportError:
 
 import pandas as pd
 from fastapi import FastAPI, Form, HTTPException, Request, UploadFile
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
@@ -40,6 +41,20 @@ STATIC_DIR = Path(__file__).resolve().parent / "static"
 SAMPLE_CSV = _ROOT / "data" / "messy_sales_dataset.csv"
 
 app = FastAPI(title="VYBE Learn", docs_url="/api/docs")
+
+# Needed once the frontend is deployed on a different origin than this
+# backend (e.g. Vercel + Render) - same-origin dev/prod-bundled setups never
+# hit this. CORS_ALLOW_ORIGINS is a comma-separated list; defaults to the
+# local dev origins so nothing changes for local development.
+_cors_origins = os.environ.get(
+    "CORS_ALLOW_ORIGINS", "http://localhost:5173,http://127.0.0.1:5173"
+)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[o.strip() for o in _cors_origins.split(",") if o.strip()],
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 # ------------------------------------------------------------------ session
